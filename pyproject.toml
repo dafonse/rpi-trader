@@ -7,14 +7,14 @@ name = "rpi-trader"
 version = "0.1.0"
 description = "Modular automation and day trading platform for Raspberry Pi"
 authors = [
-    {name = "RPI Trader Team", email = "admin@rpitrader.local"},
+    {name = "dafonse", email = "andre.fonseca@live.com"},
 ]
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Financial and Insurance Industry",
-    "License :: OSI Approved :: MIT License",
+    "License :: Proprietary",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",

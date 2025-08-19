@@ -8,14 +8,14 @@
 # On your Raspberry Pi 5, download and extract the project
 wget <download-link>/rpi-trader-complete.tar.gz
 tar -xzf rpi-trader-complete.tar.gz
-sudo mv rpi-trader /home/pi/rpi-trader
-sudo chown -R pi:pi /home/pi/rpi-trader
+sudo mv rpi-trader /home/andrepi/rpi-trader
+sudo chown -R pi:pi /home/andrepi/rpi-trader
 ```
 
 ### 2. Run the Automated Deployment
 
 ```bash
-cd /home/pi/rpi-trader
+cd /home/andrepi/rpi-trader
 chmod +x scripts/deploy.sh
 ./scripts/deploy.sh
 ```
@@ -24,7 +24,7 @@ chmod +x scripts/deploy.sh
 
 ```bash
 # Edit the environment file with your settings
-nano /home/pi/rpi-trader/.env
+nano /home/andrepi/rpi-trader/.env
 
 # Required settings:
 # - TELEGRAM_BOT_TOKEN (get from @BotFather)

@@ -6,7 +6,7 @@
 set -e
 
 # Configuration
-PROJECT_DIR="/home/pi/rpi-trader"
+PROJECT_DIR="/home/andrepi/rpi-trader"
 LOG_FILE="$PROJECT_DIR/logs/system-update.log"
 
 # Logging function
@@ -58,7 +58,7 @@ sudo apt autoclean
 
 # Update conda environments
 log "Updating conda environments..."
-source /home/pi/miniconda3/etc/profile.d/conda.sh
+source /home/andrepi/miniconda3/etc/profile.d/conda.sh
 
 for env in env-bot env-scheduler env-finance env-market env-execution; do
     log "Updating conda environment: $env"

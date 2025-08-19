@@ -1,9 +1,9 @@
 # RPI Trader - Modular Automation and Day Trading Platform
 
 **Version:** 0.1.0  
-**Author:** Manus AI  
+**Author:** dafonse
 **Target Platform:** Raspberry Pi 5 (8GB RAM, Raspberry Pi OS)  
-**License:** MIT  
+**License:** Proprietary  
 
 ## Table of Contents
 
@@ -50,40 +50,40 @@ The RPI Trader platform follows a microservices architecture with the following 
 ┌─────────────────────────────────────────────────────────────────┐
 │                        RPI Trader System                        │
 ├─────────────────────────────────────────────────────────────────┤
-│  Telegram Bot Gateway (Port 8001)                              │
-│  ├── Command Handlers                                          │
-│  ├── Authentication & Authorization                            │
-│  └── Alert & Notification System                               │
+│  Telegram Bot Gateway (Port 8001)                               │
+│  ├── Command Handlers                                           │
+│  ├── Authentication & Authorization                             │
+│  └── Alert & Notification System                                │
 ├─────────────────────────────────────────────────────────────────┤
-│  Scheduler Service (Port 8002)                                 │
-│  ├── APScheduler for Internal Jobs                             │
-│  ├── Systemd Timer Integration                                 │
-│  └── Task Orchestration                                        │
+│  Scheduler Service (Port 8002)                                  │
+│  ├── APScheduler for Internal Jobs                              │
+│  ├── Systemd Timer Integration                                  │
+│  └── Task Orchestration                                         │
 ├─────────────────────────────────────────────────────────────────┤
-│  Finance Worker (Port 8003)                                    │
-│  ├── Trade Reporting & Analysis                                │
-│  ├── P&L Calculations                                          │
-│  ├── Database Management                                       │
-│  └── Account Information                                       │
+│  Finance Worker (Port 8003)                                     │
+│  ├── Trade Reporting & Analysis                                 │
+│  ├── P&L Calculations                                           │
+│  ├── Database Management                                        │
+│  └── Account Information                                        │
 ├─────────────────────────────────────────────────────────────────┤
-│  Market Worker (Port 8004)                                     │
-│  ├── Market Data Ingestion                                     │
-│  ├── Real-time Price Feeds                                     │
-│  ├── Technical Analysis                                        │
-│  └── Signal Generation                                         │
+│  Market Worker (Port 8004)                                      │
+│  ├── Market Data Ingestion                                      │
+│  ├── Real-time Price Feeds                                      │
+│  ├── Technical Analysis                                         │
+│  └── Signal Generation                                          │
 ├─────────────────────────────────────────────────────────────────┤
-│  Execution Worker (Port 8005)                                  │
-│  ├── Order Management                                          │
-│  ├── Risk Control                                              │
-│  ├── Broker Integration                                        │
-│  └── Emergency Stop System                                     │
+│  Execution Worker (Port 8005)                                   │
+│  ├── Order Management                                           │
+│  ├── Risk Control                                               │
+│  ├── Broker Integration                                         │
+│  └── Emergency Stop System                                      │
 ├─────────────────────────────────────────────────────────────────┤
-│  Shared Libraries                                              │
-│  ├── Core Utilities (Config, Logging, Security)               │
-│  ├── Data Models & Repository Layer                            │
-│  ├── Signal Processing & Technical Analysis                    │
-│  ├── ML Models & Model Registry                                │
-│  └── Broker Integration (MT5 Client)                           │
+│  Shared Libraries                                               │
+│  ├── Core Utilities (Config, Logging, Security)                 │
+│  ├── Data Models & Repository Layer                             │
+│  ├── Signal Processing & Technical Analysis                     │
+│  ├── ML Models & Model Registry                                 │
+│  └── Broker Integration (MT5 Client)                            │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -185,8 +185,8 @@ The fastest way to get RPI Trader running is using the automated deployment scri
 
 ```bash
 # Clone the repository
-git clone <repository-url> /home/pi/rpi-trader
-cd /home/pi/rpi-trader
+git clone <repository-url> /home/andrepi/rpi-trader
+cd /home/andrepi/rpi-trader
 
 # Make deployment script executable
 chmod +x scripts/deploy.sh
@@ -224,8 +224,8 @@ Download and install Miniconda for ARM64:
 ```bash
 cd /tmp
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh
-bash Miniconda3-latest-Linux-aarch64.sh -b -p /home/pi/miniconda3
-/home/pi/miniconda3/bin/conda init bash
+bash Miniconda3-latest-Linux-aarch64.sh -b -p /home/andrepi/miniconda3
+/home/andrepi/miniconda3/bin/conda init bash
 source ~/.bashrc
 ```
 
@@ -255,7 +255,7 @@ conda create -n env-execution -y python=3.11 fastapi uvicorn pandas numpy httpx 
 Install the RPI Trader packages in editable mode:
 
 ```bash
-cd /home/pi/rpi-trader
+cd /home/andrepi/rpi-trader
 
 # Install shared libraries in all environments
 for env in env-bot env-scheduler env-finance env-market env-execution; do
@@ -677,7 +677,7 @@ sudo journalctl -u rpi-trader-* --since "1 hour ago"
 sudo journalctl -u rpi-trader-bot-gateway -f
 
 # Application logs
-tail -f /home/pi/rpi-trader/logs/*.log
+tail -f /home/andrepi/rpi-trader/logs/*.log
 ```
 
 **Log Rotation**
@@ -688,16 +688,16 @@ Logs are automatically rotated by systemd journal. Additional cleanup is perform
 **Database Backup**
 ```bash
 # Manual backup
-sqlite3 /home/pi/rpi-trader/rpi_trader.db ".backup /home/pi/rpi-trader/backups/backup_$(date +%Y%m%d).db"
+sqlite3 /home/andrepi/rpi-trader/rpi_trader.db ".backup /home/andrepi/rpi-trader/backups/backup_$(date +%Y%m%d).db"
 
 # Automated backup (add to cron)
-0 2 * * * sqlite3 /home/pi/rpi-trader/rpi_trader.db ".backup /home/pi/rpi-trader/backups/backup_$(date +\%Y\%m\%d).db"
+0 2 * * * sqlite3 /home/andrepi/rpi-trader/rpi_trader.db ".backup /home/andrepi/rpi-trader/backups/backup_$(date +\%Y\%m\%d).db"
 ```
 
 **Configuration Backup**
 ```bash
 # Backup configuration
-cp /home/pi/rpi-trader/.env /home/pi/rpi-trader/backups/env_backup_$(date +%Y%m%d)
+cp /home/andrepi/rpi-trader/.env /home/andrepi/rpi-trader/backups/env_backup_$(date +%Y%m%d)
 ```
 
 **Full System Backup**
@@ -729,10 +729,10 @@ echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governo
 **Database Optimization**
 ```bash
 # Vacuum SQLite database
-sqlite3 /home/pi/rpi-trader/rpi_trader.db "VACUUM;"
+sqlite3 /home/andrepi/rpi-trader/rpi_trader.db "VACUUM;"
 
 # Analyze database
-sqlite3 /home/pi/rpi-trader/rpi_trader.db "ANALYZE;"
+sqlite3 /home/andrepi/rpi-trader/rpi_trader.db "ANALYZE;"
 ```
 
 ## Troubleshooting
@@ -754,7 +754,7 @@ sudo journalctl -u rpi-trader-bot-gateway -n 50
 3. Verify environment configuration:
 ```bash
 # Check if .env file exists and has correct permissions
-ls -la /home/pi/rpi-trader/.env
+ls -la /home/andrepi/rpi-trader/.env
 
 # Verify conda environment
 conda activate env-bot
@@ -826,17 +826,17 @@ sudo systemctl restart rpi-trader-*
 
 1. Check database integrity:
 ```bash
-sqlite3 /home/pi/rpi-trader/rpi_trader.db "PRAGMA integrity_check;"
+sqlite3 /home/andrepi/rpi-trader/rpi_trader.db "PRAGMA integrity_check;"
 ```
 
 2. Repair database if corrupted:
 ```bash
-sqlite3 /home/pi/rpi-trader/rpi_trader.db ".recover" | sqlite3 recovered.db
+sqlite3 /home/andrepi/rpi-trader/rpi_trader.db ".recover" | sqlite3 recovered.db
 ```
 
 3. Check disk space:
 ```bash
-df -h /home/pi/rpi-trader/
+df -h /home/andrepi/rpi-trader/
 ```
 
 ### Error Codes and Messages
@@ -911,8 +911,8 @@ sudo journalctl -u rpi-trader-* --since "1 hour ago" > recent_logs.txt
 
 1. Clone the repository:
 ```bash
-git clone <repository-url> /home/pi/rpi-trader-dev
-cd /home/pi/rpi-trader-dev
+git clone <repository-url> /home/andrepi/rpi-trader-dev
+cd /home/andrepi/rpi-trader-dev
 ```
 
 2. Create development conda environment:
@@ -1164,12 +1164,12 @@ The RPI Trader platform implements multiple layers of security to protect both t
 **File System Security**
 ```bash
 # Set proper ownership
-sudo chown -R pi:pi /home/pi/rpi-trader
+sudo chown -R pi:pi /home/andrepi/rpi-trader
 
 # Restrict sensitive file permissions
-chmod 600 /home/pi/rpi-trader/.env
-chmod 700 /home/pi/rpi-trader/scripts/
-chmod 644 /home/pi/rpi-trader/services/*.service
+chmod 600 /home/andrepi/rpi-trader/.env
+chmod 700 /home/andrepi/rpi-trader/scripts/
+chmod 644 /home/andrepi/rpi-trader/services/*.service
 ```
 
 **Service Security**

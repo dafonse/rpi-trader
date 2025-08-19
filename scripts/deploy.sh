@@ -13,9 +13,9 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_DIR="/home/pi/rpi-trader"
-USER="pi"
-GROUP="pi"
+PROJECT_DIR="/home/andrepi/rpi-trader"
+USER="andrepi"
+GROUP="andrepi"
 
 # Logging function
 log() {
@@ -37,7 +37,7 @@ warning() {
 # Check if running as root
 check_root() {
     if [[ $EUID -eq 0 ]]; then
-        error "This script should not be run as root. Run as user 'pi'."
+        error "This script should not be run as root. Run as user 'andrepi'."
         exit 1
     fi
 }
@@ -77,7 +77,7 @@ install_system_dependencies() {
 install_miniconda() {
     log "Checking for Miniconda installation..."
     
-    if [ -d "/home/pi/miniconda3" ]; then
+    if [ -d "/home/andrepi/miniconda3" ]; then
         log "Miniconda already installed"
         return
     fi
@@ -85,11 +85,11 @@ install_miniconda() {
     log "Installing Miniconda..."
     cd /tmp
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O miniconda.sh
-    bash miniconda.sh -b -p /home/pi/miniconda3
+    bash miniconda.sh -b -p /home/andrepi/miniconda3
     rm miniconda.sh
     
     # Initialize conda
-    /home/pi/miniconda3/bin/conda init bash
+    /home/andrepi/miniconda3/bin/conda init bash
     source ~/.bashrc
     
     success "Miniconda installed"
@@ -100,7 +100,7 @@ create_conda_environments() {
     log "Creating conda environments..."
     
     # Source conda
-    source /home/pi/miniconda3/etc/profile.d/conda.sh
+    source /home/andrepi/miniconda3/etc/profile.d/conda.sh
     
     # Environment configurations
     declare -A envs=(
@@ -151,7 +151,7 @@ setup_project_directory() {
 install_python_packages() {
     log "Installing Python packages in editable mode..."
     
-    source /home/pi/miniconda3/etc/profile.d/conda.sh
+    source /home/andrepi/miniconda3/etc/profile.d/conda.sh
     
     # Install main libs package in all environments
     for env in env-bot env-scheduler env-finance env-market env-execution; do
@@ -211,16 +211,16 @@ setup_cron_jobs() {
     cat > /tmp/rpi-trader-cron << 'EOF'
 # RPI Trader Cron Jobs
 # System updates at 3 AM
-0 3 * * * /home/pi/rpi-trader/scripts/system-update.sh >> /home/pi/rpi-trader/logs/cron.log 2>&1
+0 3 * * * /home/andrepi/rpi-trader/scripts/system-update.sh >> /home/andrepi/rpi-trader/logs/cron.log 2>&1
 
 # Daily summary at 8 AM
-0 8 * * * /home/pi/rpi-trader/scripts/daily-summary.sh >> /home/pi/rpi-trader/logs/cron.log 2>&1
+0 8 * * * /home/andrepi/rpi-trader/scripts/daily-summary.sh >> /home/andrepi/rpi-trader/logs/cron.log 2>&1
 
 # Trade reports at 7 PM
-0 19 * * * /home/pi/rpi-trader/scripts/trade-report.sh >> /home/pi/rpi-trader/logs/cron.log 2>&1
+0 19 * * * /home/andrepi/rpi-trader/scripts/trade-report.sh >> /home/andrepi/rpi-trader/logs/cron.log 2>&1
 
 # Health check every 15 minutes
-*/15 * * * * /home/pi/rpi-trader/scripts/health-check.sh >> /home/pi/rpi-trader/logs/cron.log 2>&1
+*/15 * * * * /home/andrepi/rpi-trader/scripts/health-check.sh >> /home/andrepi/rpi-trader/logs/cron.log 2>&1
 EOF
     
     # Install cron jobs (avoid duplicates)

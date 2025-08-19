@@ -6,7 +6,7 @@
 set -e
 
 # Configuration
-PROJECT_DIR="/home/pi/rpi-trader"
+PROJECT_DIR="/home/andrepi/rpi-trader"
 LOG_FILE="$PROJECT_DIR/logs/daily-summary.log"
 
 # Logging function

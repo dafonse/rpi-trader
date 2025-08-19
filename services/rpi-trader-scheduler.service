@@ -5,11 +5,11 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
-Group=pi
-WorkingDirectory=/home/pi/rpi-trader
-Environment=PATH=/home/pi/miniconda3/envs/env-scheduler/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/home/pi/miniconda3/envs/env-scheduler/bin/python -m apps.scheduler.main
+User=andrepi
+Group=andrepi
+WorkingDirectory=/home/andrepi/rpi-trader
+Environment=PATH=/home/andrepi/miniconda3/envs/env-scheduler/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/home/andrepi/miniconda3/envs/env-scheduler/bin/python -m apps.scheduler.main
 Restart=always
 RestartSec=10
 StandardOutput=journal
@@ -21,10 +21,10 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/home/pi/rpi-trader
+ReadWritePaths=/home/andrepi/rpi-trader
 
 # Environment file
-EnvironmentFile=/home/pi/rpi-trader/.env
+EnvironmentFile=/home/andrepi/rpi-trader/.env
 
 [Install]
 WantedBy=multi-user.target
