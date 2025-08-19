@@ -1,0 +1,31 @@
+# Environments
+.env
+
+# Logs
+*.log
+logs/
+
+# Virtual environments
+venv/
+.env/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python egg files
+*.egg
+*.egg-info/
+*.eggs/
+*.whl
+*.dist-info/
+*.egg-info/
+dist/
+build/
+
+# Python cache
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+__pycache__/
