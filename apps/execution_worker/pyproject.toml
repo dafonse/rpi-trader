@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rpi-trader-execution-worker"
+version = "0.1.0"
+description = "Execution Worker Service for RPI Trader"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "httpx>=0.25.0",
+    "python-dotenv>=1.0.0",
+    "structlog>=23.2.0",
+]
+
+[project.scripts]
+execution-worker = "execution_worker.main:main"
+
