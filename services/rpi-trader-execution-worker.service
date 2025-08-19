@@ -1,0 +1,31 @@
+[Unit]
+Description=RPI Trader Execution Worker
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/rpi-trader
+Environment=PATH=/home/pi/miniconda3/envs/env-execution/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/home/pi/miniconda3/envs/env-execution/bin/python -m apps.execution_worker.main
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=rpi-trader-execution-worker
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/home/pi/rpi-trader
+
+# Environment file
+EnvironmentFile=/home/pi/rpi-trader/.env
+
+[Install]
+WantedBy=multi-user.target
+
