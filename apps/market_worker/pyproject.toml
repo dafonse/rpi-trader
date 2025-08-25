@@ -22,3 +22,5 @@ dependencies = [
 [project.scripts]
 market-worker = "market_worker.main:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["market_worker"]

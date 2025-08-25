@@ -19,3 +19,5 @@ dependencies = [
 [project.scripts]
 bot-gateway = "bot_gateway.main:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["bot_gateway"]

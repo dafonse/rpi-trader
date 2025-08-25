@@ -13,8 +13,8 @@ sys.path.insert(0, str(project_root))
 
 from libs.core.config import get_settings
 from libs.core.logging import setup_logging, get_logger
-from .bot import TelegramBot
-from .api import create_app
+from apps.bot_gateway.bot import TelegramBot
+from apps.bot_gateway.api import create_app
 
 logger = get_logger(__name__)
 

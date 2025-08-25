@@ -293,8 +293,11 @@ sudo systemctl enable rpi-trader-execution-worker
 Install automated maintenance tasks:
 
 ```bash
+# Make deployment script executable
+chmod +x scripts/deploy.sh
+
 # Add cron jobs (the deploy script handles this automatically)
-./scripts/deploy.sh setup_cron_jobs
+./scripts/deploy.sh cron_jobs
 ```
 
 ## Configuration

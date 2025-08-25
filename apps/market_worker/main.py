@@ -25,8 +25,8 @@ async def main():
     logger.info("Starting Market Worker Service", port=settings.market_worker_port)
     
     # Import and start market service
-    from .market_service import MarketService
-    from .api import create_app
+    from apps.market_worker.market_service import MarketService
+    from apps.market_worker.api import create_app
     
     # Create market service
     market_service = MarketService()

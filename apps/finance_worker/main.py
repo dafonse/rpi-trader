@@ -25,8 +25,8 @@ async def main():
     logger.info("Starting Finance Worker Service", port=settings.finance_worker_port)
     
     # Import and start finance service
-    from .finance_service import FinanceService
-    from .api import create_app
+    from apps.finance_worker.finance_service import FinanceService
+    from apps.finance_worker.api import create_app
     
     # Create finance service
     finance_service = FinanceService()

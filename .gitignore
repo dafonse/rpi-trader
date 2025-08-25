@@ -1,6 +1,10 @@
 # Environments
 .env
 
+# Database
+*.sqlite3
+*.db
+
 # Logs
 *.log
 logs/

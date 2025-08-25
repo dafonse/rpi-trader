@@ -19,3 +19,5 @@ dependencies = [
 [project.scripts]
 execution-worker = "execution_worker.main:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["execution_worker"]

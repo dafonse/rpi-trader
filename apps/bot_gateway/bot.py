@@ -18,7 +18,7 @@ sys.path.insert(0, str(project_root))
 from libs.core.config import get_settings
 from libs.core.security import verify_telegram_chat_id
 from libs.core.logging import get_logger
-from .handlers import (
+from apps.bot_gateway.handlers import (
     start_handler, help_handler, status_handler, health_handler,
     positions_handler, trades_handler, balance_handler,
     reboot_handler, stop_trading_handler, start_trading_handler,

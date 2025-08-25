@@ -9,7 +9,7 @@ User=andrepi
 Group=andrepi
 WorkingDirectory=/home/andrepi/rpi-trader
 Environment=PATH=/home/andrepi/miniconda3/envs/env-bot/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/home/andrepi/miniconda3/envs/env-bot/bin/python -m apps.bot_gateway.main
+ExecStart=/home/andrepi/miniconda3/envs/env-bot/bin/python apps/bot_gateway/main.py
 Restart=always
 RestartSec=10
 StandardOutput=journal

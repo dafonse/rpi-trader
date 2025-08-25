@@ -9,7 +9,7 @@ User=andrepi
 Group=andrepi
 WorkingDirectory=/home/andrepi/rpi-trader
 Environment=PATH=/home/andrepi/miniconda3/envs/env-finance/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/home/andrepi/miniconda3/envs/env-finance/bin/python -m apps.finance_worker.main
+ExecStart=/home/andrepi/miniconda3/envs/env-finance/bin/python apps/finance_worker/main.py
 Restart=always
 RestartSec=10
 StandardOutput=journal

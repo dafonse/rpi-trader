@@ -25,8 +25,8 @@ async def main():
     logger.info("Starting Execution Worker Service", port=settings.execution_worker_port)
     
     # Import and start execution service
-    from .execution_service import ExecutionService
-    from .api import create_app
+    from apps.execution_worker.execution_service import ExecutionService
+    from apps.execution_worker.api import create_app
     
     # Create execution service
     execution_service = ExecutionService()

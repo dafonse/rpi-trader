@@ -18,3 +18,5 @@ dependencies = [
 [project.scripts]
 scheduler = "scheduler.main:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["scheduler"]

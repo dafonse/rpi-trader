@@ -351,16 +351,21 @@ case "${1:-deploy}" in
     "logs")
         sudo journalctl -f -u rpi-trader-*
         ;;
+    "cron_jobs")
+        log "Setting up cron jobs..."
+        setup_cron_jobs
+        ;;
     *)
-        echo "Usage: $0 {deploy|update|start|stop|status|logs}"
+        echo "Usage: $0 {deploy|update|start|stop|status|logs|cron_jobs}"
         echo
         echo "Commands:"
-        echo "  deploy  - Full deployment (default)"
-        echo "  update  - Update and restart services"
-        echo "  start   - Start all services"
-        echo "  stop    - Stop all services"
-        echo "  status  - Show service status"
-        echo "  logs    - Show live logs"
+        echo "  deploy      - Full deployment (default)"
+        echo "  update      - Update and restart services"
+        echo "  start       - Start all services"
+        echo "  stop        - Stop all services"
+        echo "  status      - Show service status"
+        echo "  logs        - Show live logs"
+        echo "  cron_jobs   - Setup cron jobs"
         exit 1
         ;;
 esac
